@@ -69,7 +69,7 @@ public class BirdGameManager : MonoBehaviour
     {
         if (isEnemySpawning)
         {
-            //difficultyTimer += Time.deltaTime;
+            difficultyTimer += Time.deltaTime;
             spawnTimer += Time.deltaTime;
 
             // Every few seconds, increase spawn rate
@@ -78,7 +78,6 @@ public class BirdGameManager : MonoBehaviour
                 enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate -  difficultyIncreaseRate);
                 spawnTimer = 0f; // Reset timer
             }
-
 
             // Gradually increase enemy spawn rate over time, but never go below minSpawnRate
             enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate - difficultyIncreaseRate * Time.deltaTime);
@@ -99,9 +98,7 @@ public class BirdGameManager : MonoBehaviour
         tempEnemy = Instantiate(BirdShooterPrefab);
         tempEnemy.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;        
         tempEnemy.GetComponent<BirdEnemy>().weapon = shootWeapon;
-        tempEnemy.GetComponent<BirdShooter>().SetShooterEnemy(6, 1.25f);
-
-        
+        tempEnemy.GetComponent<BirdShooter>().SetShooterEnemy(3, 1.25f);        
     }
 
     void CreateBirdMachineGunner()
@@ -109,7 +106,7 @@ public class BirdGameManager : MonoBehaviour
         tempEnemy = Instantiate(BirdMachingunPrefab);
         tempEnemy.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
         tempEnemy.GetComponent<BirdEnemy>().weapon = machineGunWeapon;
-        tempEnemy.GetComponent<BirdMachineGun>().SetMachineGunEnemy(6, 1.25f);
+        tempEnemy.GetComponent<BirdMachineGun>().SetMachineGunEnemy(3, 1.25f);
     }
 
     void CreateBirdExploder()
@@ -202,8 +199,6 @@ public class BirdGameManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-
-
 
         OnGameOver?.Invoke();
     }
