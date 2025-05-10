@@ -36,11 +36,16 @@ public class BirdShooter : BirdEnemy
         {
             speed = 0;
             Attack(attackTime);
+
+            // Trigger shooting when within range
+            Shoot(bulletPrefab, this, "BirdPlayer", attackTime);
         }
         else
         {
             speed = setSpeed;
         }
+
+        
     }
 
     private void Shoot(BulletSeed bullet, Playable_Object shooter, string targetTag,float interval)

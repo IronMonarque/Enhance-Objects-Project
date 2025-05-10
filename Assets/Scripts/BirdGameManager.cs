@@ -32,6 +32,12 @@ public class BirdGameManager : MonoBehaviour
     private static BirdGameManager instance;
     public int nukeCount; //Centralized nuke count
 
+    [SerializaField] private float initialSpawnRate = 1.5f; // Start with a higher rate
+    [SerializeField] private float minSpawnRate = 0.2f; // Minimum spawn rate to prevent chaos
+    [SerializeField] private float difficultyIncreaseRate = 0.2f; // Gradual difficulty scaling
+    private float difficultyTimer = 0f;
+    private float spawnTimer = 0f;
+
     public static BirdGameManager GetInstance()
     {
         return instance;
@@ -61,7 +67,22 @@ public class BirdGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isEnemySpawning)
+        {
+            //difficultyTimer += Time.deltaTime;
+            spawnTimer += Time.deltaTime;
+
+            // Every few seconds, increase spawn rate
+            if (spawnTimer >= 5f) // Adjust difficulty every 5 seconds
+            { 
+                enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate -  difficultyIncreaseRate);
+                spawnTimer = 0f; // Reset timer
+            }
+
+
+            // Gradually increase enemy spawn rate over time, but never go below minSpawnRate
+            enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate - difficultyIncreaseRate * Time.deltaTime);
+        }
     }
     
 
@@ -105,11 +126,7 @@ public class BirdGameManager : MonoBehaviour
         while (isEnemySpawning)
         {
             yield return new WaitForSeconds(1.0f/enemySpawnRate);
-            /*CreateBirdMelee();
-            CreateBirdShooter();
-            CreateBirdMachineGunner();
-            CreateBirdExploder();*/
-
+            
             int randomIndex = UnityEngine.Random.Range(0, 4); // Assuming 4 enemy types
             switch (randomIndex)
             {
@@ -118,15 +135,7 @@ public class BirdGameManager : MonoBehaviour
                 case 2: CreateBirdMachineGunner(); break;
                 case 3: CreateBirdExploder(); break;
             }
-        }
-        /*int randomIndex = UnityEngine.Random.Range(0, 4); // Assuming 4 enemy types
-        switch (randomIndex)
-        {
-            case 0: CreateBirdMelee(); break;
-            case 1: CreateBirdShooter(); break;
-            case 2: CreateBirdMachineGunner(); break;
-            case 3: CreateBirdExploder(); break;
-        }*/
+        }        
     }
 
     public void SetEnemySpawnState(bool status)

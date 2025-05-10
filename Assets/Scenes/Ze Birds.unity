@@ -254,11 +254,13 @@ MonoBehaviour:
   - {fileID: 130409826}
   - {fileID: 1025621722}
   - {fileID: 887758267}
-  enemySpawnRate: 1
+  enemySpawnRate: 2
   playerPrefab: {fileID: 366034723238628387, guid: 438123b6de8129041b96c57fa14eff30, type: 3}
   scoreManager: {fileID: 5549373}
   pickupSpawner: {fileID: 922149313}
   nukeCount: 0
+  minSpawnRate: 1
+  difficultyIncreaseRate: 3
 --- !u!1 &130409825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,7 +1824,7 @@ MonoBehaviour:
     spawnAmount: 1
   - pickup: {fileID: -608353065848004119, guid: eddabd03d0cf5ab4985000b75246a35c, type: 3}
     spawnAmount: 1
-  pickupProbability: 0.85
+  pickupProbability: 0.42
 --- !u!1 &1025621721
 GameObject:
   m_ObjectHideFlags: 0

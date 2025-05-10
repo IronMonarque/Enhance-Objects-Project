@@ -36,6 +36,9 @@ public class BirdMachineGun : BirdEnemy
         {
             speed = 0;
             Attack(attackTime);
+
+            // Trigger shooting when within range
+            Shoot(bulletPrefab, this, "BirdPlayer", attackTime);
         }
         else
         {
@@ -43,7 +46,7 @@ public class BirdMachineGun : BirdEnemy
         }
     }
 
-    public void Shoot(float interval)
+    private void Shoot(BulletSeed bullet, Playable_Object shooter, string targetTag, float interval)
     {
         if (timer <= interval)
         {
@@ -51,12 +54,14 @@ public class BirdMachineGun : BirdEnemy
         }
         else
         {
-            timer = 3;
+            timer = 0;
             target.GetComponent<BirdIDamageable>().GetDamage(weapon.GetDamage());
+            BulletSeed tempBullet = GameObject.Instantiate(bullet, shooter.transform.position, shooter.transform.rotation);
+            tempBullet.SetBullet(weaponDamage, targetTag, bulletSpeed);
+
             weapon.Shoot(bulletPrefab, this, "BirdPlayer");
             Debug.Log($"Shooter enemy damage ; {weapon.GetDamage()}");
         }
-                
     }
 
     public void SetMachineGunEnemy(float attackRange, float attackTime)

@@ -114,5 +114,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  attackRange: 0.5
-  attackTime: 0.5
+  attackRange: 0
+  attackTime: 1
