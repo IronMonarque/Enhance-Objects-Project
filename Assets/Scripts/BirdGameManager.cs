@@ -67,21 +67,19 @@ public class BirdGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isEnemySpawning)
+        /*if (isEnemySpawning)
         {
             difficultyTimer += Time.deltaTime;
             spawnTimer += Time.deltaTime;
 
-            // Every few seconds, increase spawn rate
-            if (spawnTimer >= 5f) // Adjust difficulty every 5 seconds
-            { 
-                enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate -  difficultyIncreaseRate);
-                spawnTimer = 0f; // Reset timer
+            // Every 5 seconds, adjust difficulty dynamically
+            if (spawnTimer >= 5f)
+            {
+                enemySpawnRate *= 0.9f; // Exponential decay for smooth scaling
+                enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate);
+                spawnTimer = 0f;
             }
-
-            // Gradually increase enemy spawn rate over time, but never go below minSpawnRate
-            enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate - difficultyIncreaseRate * Time.deltaTime);
-        }
+        }*/
     }
     
 
@@ -122,7 +120,7 @@ public class BirdGameManager : MonoBehaviour
     {
         while (isEnemySpawning)
         {
-            yield return new WaitForSeconds(1.0f/enemySpawnRate);
+            yield return new WaitForSeconds(0.5f/enemySpawnRate);
             
             int randomIndex = UnityEngine.Random.Range(0, 4); // Assuming 4 enemy types
             switch (randomIndex)
@@ -138,6 +136,20 @@ public class BirdGameManager : MonoBehaviour
     public void SetEnemySpawnState(bool status)
     {
         isEnemySpawning = status;
+
+        if (isEnemySpawning)
+        {
+            difficultyTimer += Time.deltaTime;
+            spawnTimer += Time.deltaTime;
+
+            // Every 5 seconds, adjust difficulty dynamically
+            if (spawnTimer >= 5f)
+            {
+                enemySpawnRate -= 0.1f; // Exponential decay for smooth scaling
+                enemySpawnRate = Mathf.Max(minSpawnRate, enemySpawnRate);
+                spawnTimer = 0f;
+            }
+        }
     }
 
     public void NotifyDeath(BirdEnemy enemy)
