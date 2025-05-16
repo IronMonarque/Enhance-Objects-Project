@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public bool canInterract = true;
 
     public void Play()
     {
@@ -11,11 +10,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Ze Birds");
     }
 
-    public void Tutorial()
+    /*public void Tutorial()
     {
         Debug.Log("tut");
         SceneManager.LoadScene("tutorial");
-    }
+    }*/
 
     public void Quit()
     {

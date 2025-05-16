@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5999396178547107706, guid: a9094ffaad80ea14da4331fb6d9a7e1e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5999396178547107707, guid: a9094ffaad80ea14da4331fb6d9a7e1e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
