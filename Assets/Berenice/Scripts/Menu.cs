@@ -5,12 +5,6 @@ public class Menu : MonoBehaviour
 {
     public bool canInterract = true;
 
-    public void Fade()
-    {
-        canInterract = false;
-        SceneManager.LoadScene("BeginingCutscene");
-    }
-
     public void Play()
     {
         Debug.Log("played");

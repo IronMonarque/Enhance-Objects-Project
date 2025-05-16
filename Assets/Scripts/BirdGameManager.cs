@@ -12,6 +12,7 @@ public class BirdGameManager : MonoBehaviour
     [Header("Game Variables")]
     [SerializeField] private float enemySpawnRate;
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] AudioSource bgMusic, menuMusic;
 
     private GameObject tempEnemy;
     private bool isEnemySpawning;
@@ -158,6 +159,8 @@ public class BirdGameManager : MonoBehaviour
 
         OnGameStart?.Invoke();
         StartCoroutine(GameStarter());
+        bgMusic.Play();
+        menuMusic.Stop();
     }
 
     IEnumerator GameStarter()
