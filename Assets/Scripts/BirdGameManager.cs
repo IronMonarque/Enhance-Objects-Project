@@ -55,32 +55,32 @@ public class BirdGameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-                
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
+
 
     void CreateBirdMelee()
     {
         tempEnemy = Instantiate(BirdMeleePrefab);
         tempEnemy.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
         tempEnemy.GetComponent<BirdEnemy>().weapon = meleeWeapon;
-        tempEnemy.GetComponent<BirdMeleeEnemy>().SetMeleeEnemy(2, 0.25f);       
+        tempEnemy.GetComponent<BirdMeleeEnemy>().SetMeleeEnemy(2, 0.25f);
     }
 
     void CreateBirdShooter()
     {
         tempEnemy = Instantiate(BirdShooterPrefab);
-        tempEnemy.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;        
+        tempEnemy.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
         tempEnemy.GetComponent<BirdEnemy>().weapon = shootWeapon;
         tempEnemy.GetComponent<BirdShooter>().SetShooterEnemy(6, 1.25f);
 
-        
+
     }
 
     void CreateBirdMachineGunner()
@@ -104,7 +104,7 @@ public class BirdGameManager : MonoBehaviour
     {
         while (isEnemySpawning)
         {
-            yield return new WaitForSeconds(1.0f/enemySpawnRate);
+            yield return new WaitForSeconds(1.0f / enemySpawnRate);
             /*CreateBirdMelee();
             CreateBirdShooter();
             CreateBirdMachineGunner();
@@ -175,7 +175,7 @@ public class BirdGameManager : MonoBehaviour
 
         StartCoroutine(GameEnding());
     }
-        
+
     IEnumerator GameEnding()
     {
         isEnemySpawning = false;
@@ -183,7 +183,7 @@ public class BirdGameManager : MonoBehaviour
         isPlaying = false;
 
         //Delete all enemies
-        foreach(BirdEnemy item in FindObjectsByType<BirdEnemy>(FindObjectsSortMode.None))
+        foreach (BirdEnemy item in FindObjectsByType<BirdEnemy>(FindObjectsSortMode.None))
         {
             Destroy(item.gameObject);
         }
