@@ -114,5 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  squawk: {fileID: 8300000, guid: 05b66ffa9ce357648befd57e7c97a987, type: 3}
   attackRange: 0.5
   attackTime: 0.5

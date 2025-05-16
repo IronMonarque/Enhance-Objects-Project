@@ -8,7 +8,7 @@ public class BirdEnemy : Playable_Object
     //private string name;
     [SerializeField] protected float speed;
     protected Transform target;
-
+    [SerializeField] AudioSource squawk;
     private BirdEnemyType enemyType;
 
     protected virtual void Start()
@@ -23,7 +23,8 @@ public class BirdEnemy : Playable_Object
             Debug.Log("There is no player in the scene. Enemy selfdestruct" + ex);
             Destroy(gameObject);
             BirdGameManager.GetInstance().SetEnemySpawnState(false);
-        }        
+        }  
+        
     }
 
     protected virtual void Update()
@@ -82,6 +83,7 @@ public class BirdEnemy : Playable_Object
         Debug.Log("Enemy died");
         BirdGameManager.GetInstance().NotifyDeath(this);
         Destroy(gameObject);
+        squawk.Play();
     }
 
     public void SetEnemyType(BirdEnemyType enemyType)

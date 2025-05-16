@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  squawk: {fileID: 0}
   attackRange: 3
   attackTime: 1
   weaponDamage: 2
