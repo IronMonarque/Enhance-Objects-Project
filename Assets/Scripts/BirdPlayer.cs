@@ -7,7 +7,7 @@ public class BirdPlayer : Playable_Object //Inheritance
     
     [SerializeField] private Camera cam;
     [SerializeField] private float speed;
-
+    [SerializeField] AudioSource shoot;
     [SerializeField] private float weaponDamage = 1;
     [SerializeField] private float bulletSpeed = 10;
     [SerializeField] private BulletSeed bulletPrefab;
@@ -51,6 +51,7 @@ public class BirdPlayer : Playable_Object //Inheritance
     {
         Debug.Log("Player is shooting");
         weapon.Shoot(bulletPrefab, this, "BirdEnemy");
+        shoot.Play();
     }
 
     public override void Attack(float interval)

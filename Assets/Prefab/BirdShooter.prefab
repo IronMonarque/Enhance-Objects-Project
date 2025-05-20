@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2153134480325341249, guid: 116b87150e043b847a656bacb55fb9a0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2153134480325341250, guid: 116b87150e043b847a656bacb55fb9a0, type: 3}
       propertyPath: m_GravityScale
       value: 0
@@ -110,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  squawk: {fileID: 8300000, guid: 05b66ffa9ce357648befd57e7c97a987, type: 3}
   attackRange: 0.5
   attackTime: 1
   weaponDamage: 15
